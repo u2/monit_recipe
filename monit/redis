@@ -1,0 +1,9 @@
+# redis
+check process redis with pidfile /home/god/pids/redis.pid
+  #if does not exist then exec "/home/god/mysh/startRedis.sh" as uid god and gid god
+  start = "/bin/bash -c '/bin/sh /home/god/mysh/startRedis.sh'" as uid god and gid god
+  stop program = "/etc/init.d/redis-server stop" as uid god and gid god
+  group redis
+ 
+#check file dump.rdb with path /home/god/redis-2.8.16/dump.rdb
+#  if size > 500 MB then alert

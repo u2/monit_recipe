@@ -1,0 +1,15 @@
+check process thin-2000 with pidfile /var/app/chat/tmp/pids/thin.2000.pid
+        start = "/bin/bash -c '/bin/sh /home/god/mysh/thin.2000.sh start'" as uid god and gid god
+        stop program = "/usr/bin/thin stop -P/var/app/chat/tmp/pids/thin.2000.pid"  as uid god and gid god
+
+        if 3 restarts within 5 cycles then timeout
+        if failed port 2000 protocol http with timeout 30 seconds for 2 cycles then restart
+        group thin
+
+check process thin-2001 with pidfile /var/app/chat/tmp/pids/thin.2001.pid
+        start = "/bin/bash -c '/bin/sh /home/god/mysh/thin.2001.sh start'" as uid god and gid god
+        stop program = "/usr/bin/thin stop -P/var/app/chat/tmp/pids/thin.2001.pid"  as uid god and gid god
+
+        if 3 restarts within 5 cycles then timeout
+        if failed port 2001 protocol http with timeout 30 seconds for 2 cycles then restart
+        group thin
